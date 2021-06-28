@@ -1,24 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
 
-function App() {
+import Header from './Components/Header'
+import Body from './Components/Body'
+import Footer from './Components/Footer'
+import Infrastructure from './Components/Infrastructure'
+import Service from './Components/Service'
+import Produit from './Components/Produit'
+import { BrowserRouter,  Router, Switch, Route } from "react-router-dom";
+
+import { useState, useEffect } from 'react'
+
+
+//import JsonData from './data/data.json'
+import SmoothScroll from 'smooth-scroll'
+
+export const scroll = new SmoothScroll('a[href*="#"]', {
+  speed: 1000,
+  speedAsDuration: true,
+})
+const a=2
+const App=()=> {
+
+
+  const [landingPageData, setLandingPageData] = useState({})
+  useEffect(() => {
+    setLandingPageData(a)
+  }, [])
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    {/* <Header  data={landingPageData.Header}/>
+    <Body data={landingPageData.Features}/>
+    <Footer data={landingPageData.About}/> */}
+
+    <BrowserRouter>
+      <Route exact path="/" component={Header}/>
+      <Route exact path="/" component={Body}/>
+      <Route exact path="/" component={Footer}/>
+      <Route exact path="/infrastructure" component={Infrastructure}/>
+      <Route exact path="/service" component={Service}/>
+      <Route exact path="/produit" component={Produit}/>
+    </BrowserRouter>
+    </>
   );
 }
 
